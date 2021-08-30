@@ -34,13 +34,13 @@ echo "${blue_fg}Dependencies resolved.${reset}"
 # Select level of automation
 select_automation () {
 echo "---------"
-echo "${blue_fg}Would you like to create a CRON job to update the ACL every hour? ${reset}"
+echo "${blue_fg}Would you like to create a cron job to update the ACL every hour? ${reset}"
 PS3="Please select 1, 2, or 3 from the above options: "
-options=("Create a CRON job." "Run once." "Quit/Cancel")
+options=("Create a cron job." "Run once." "Quit/Cancel")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Create a CRON job.")
+        "Create a cron job.")
             create_cron
             ;;
         "Run once.")
@@ -94,6 +94,8 @@ sed -i "s|your_psql_username|$PGUSERNAME|g" envVars
 sed -i "s|your_psql_password|$PGPASSWORD|g" envVars
 sed -i "s|your_psql_database|$PGDATABASE|g" envVars
 sed -i "s|your_ocr_listenport|$LISTENPORT|g" envVars
+sed -i "s|#PG|PG|g" envVars
+sed -i "s|#LI|LI|g" envVars
 }
 
 # =========
@@ -151,7 +153,7 @@ add_to_crontab () {
 
 # ==================
 # =========
-# Create Hourly CRON Job
+# Create Hourly cron Job
 create_cron () {
 collect_vars
 update_env_vars
