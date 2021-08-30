@@ -154,7 +154,7 @@ add_to_crontab () {
 # Create Hourly CRON Job
 create_cron () {
 collect_vars
-update_envvars
+update_env_vars
 collect_peers
 make_shell_script
 add_to_crontab
