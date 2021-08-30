@@ -11,6 +11,12 @@ yellow_fg=$(tput setaf 3)
 reset=$(tput sgr0)
 WORKING_DIR=$(pwd)
 
+# Check if root
+if [ "$EUID" -ne 0 ]
+  then echo "${b} Run as elevated user (sudo)${n}"
+  exit
+fi
+
 # =========
 # Install Dependencies
 check_deb_deps () {
@@ -115,7 +121,7 @@ iptables -A INPUT -p tcp --dport $LISTENPORT -j REJECT
 # =========
 # Create Bash Script for Automation Purposes
 make_shell_script () {
-cat <<EOT >> ocrwhitelistcron.sh
+cat <<EOT >> ocr-acl.sh
 # Collect Database Variables
 source $WORKINGDIR/envVars
 
@@ -159,7 +165,7 @@ exit
 # Run Script Once
 run_once () {
 collect_vars
-update_envvars
+update_env_vars
 collect_peers
 create_iptables_rules
 exit
