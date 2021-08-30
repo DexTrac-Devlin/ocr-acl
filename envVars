@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# For the cron job be sure to set (and uncomment) the below variables
+
+#PGHOSTORIP=your_psql_host_/ip
+#PGUSERNAME=your_psql_username
+#PGPASSWORD=your_psql_password
+#PGDATABASE=your_psql_database
+
+#LISTENPORT=your_ocr_listenport
