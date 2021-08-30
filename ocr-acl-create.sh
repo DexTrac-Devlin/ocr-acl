@@ -148,7 +148,7 @@ EOT
 # =========
 # create cronjob to run the above script
 add_to_crontab () {
-(crontab -l 2>/dev/null; echo "0 * * * * $WORKINGDIR/ocrwhitelistcron.sh -with args") | crontab -
+(crontab -l 2>/dev/null; echo "0 * * * * $WORKINGDIR/ocrwhitelistcron.sh") | crontab -
 }
 
 # ==================
