@@ -31,9 +31,9 @@ sudo ./ocr-acl-create.sh
 --
 
 ### Manually Create Cron Job
-* You can manually create the cron job based on the example included. You'll need to update the envrionment variables in the envVars file.
+* You can manually create the cron job based on the example included. You'll need to update the envrionment variables in the `envVars` file.
   * Most of the variables are self-explanatory; `LISTENPORT` is the value you set for `P2P_ANNOUNCE_PORT` and/or `P2P_LISTEN_PORT` in your OCR node's `.env` file
-  * If yo'd prefer, you can specify the env vars in the `ocr-acl.sh` script itself, or replace them with the literal values, rather than using the `envVars` file.
+  * If you'd prefer, you can specify the env vars in the `ocr-acl.sh` script itself, or replace them with the literal values, rather than using the `envVars` file.
 
 
 ## Contributing
