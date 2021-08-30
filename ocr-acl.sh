@@ -14,7 +14,7 @@ sed -i '/^$/d' peer_ip_addrs
 sed -z -i 's/\n/,/g;s/,$/\n/' peer_ip_addrs
 
 # Create whitelist for known ocr peers
-peerips='cat peer_ip_addrs'
+peerips="$(< peer_ip_addrs)"
 sudo iptables -A INPUT -s $peerips -p tcp --dport $LISTENPORT -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport $LISTENPORT -j REJECT
 # Dedupe rules
