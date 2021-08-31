@@ -2,6 +2,11 @@
 WORKING_DIR=$(pwd)
 
 # Collect Database Variables
+#PGHOSTORIP=your_psql_host_/ip
+#PGUSERNAME=your_psql_username
+#PGPASSWORD=your_psql_password
+#PGDATABASE=your_psql_database
+#LISTENPORT=your_ocr_listenport
 source $WORKING_DIR/envVars
 
 # Collect Known Peers
