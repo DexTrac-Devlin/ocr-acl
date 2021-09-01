@@ -205,13 +205,15 @@ sudo chmod +x $WORKING_DIR/ocr-acl-iptables.sh
 
 # Create cron job to run iptables script
 iptables_crontab () {
+(crontab -l 2>/dev/null; echo "Chainlink Firewall Script") | crontab -
 (crontab -l 2>/dev/null; echo "0 * * * * $WORKING_DIR/ocr-acl-iptables.sh") | crontab -
+(crontab -l 2>/dev/null; echo "") | crontab -
 }
 
 # Create EC2 rules based on peer info
 create_ec2_rules () {
 while read ip port; do 
-aws ec2 authorize-security-group-ingress --group-name $EC2_GROUP --protocol tcp --port $LISTENPORT --cidr $ip/32 
+aws ec2 authorize-security-group-ingress --group-id $EC2GROUP --protocol tcp --port $LISTENPORT --cidr $ip/32 >/dev/null 2>&1
 done < "peer_ip_addrs"
 }
 
@@ -222,7 +224,9 @@ sudo chmod +x $WORKING_DIR/ocr-acl-ec2.sh
 
 # Create cron job to run ec2 script
 ec2_crontab () {
+(crontab -l 2>/dev/null; echo "#Chainlink Firewall Script") | crontab -
 (crontab -l 2>/dev/null; echo "0 * * * * $WORKING_DIR/ocr-acl-ec2.sh") | crontab -
+(crontab -l 2>/dev/null; echo "") | crontab -
 }
 
 # Create Hourly cron Job

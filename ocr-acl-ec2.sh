@@ -14,4 +14,6 @@ sed -i '/^$/d' peer_ip_addrs
 sed -z -i 's/\n/,/g;s/,$/\n/' peer_ip_addrs
 
 # Create whitelist for known ocr peers
-peerips="$(< peer_ip_addrs)"
+while read ip port; do
+aws ec2 authorize-security-group-ingress --group-id $EC2GROUP --protocol tcp --port $LISTENPORT --cidr $ip/32 >/dev/null 2>&1
+done < "peer_ip_addrs"
