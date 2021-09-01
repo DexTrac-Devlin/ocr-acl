@@ -14,7 +14,7 @@ This is a tool that can be used to automate your Chianlink OCR node's firewall t
 * You can use the included `ocr-acl-create.sh` command to be guided in generating the cron job based on the peering information in your database.  By default, the cron job will run at the top of every hour.  This is in case a peer's IP address has changed.
 
 ```bash
-sudo ./ocr-acl-create.sh
+sudo ./run.sh
 ```
 (select option 1)
 
@@ -24,7 +24,7 @@ sudo ./ocr-acl-create.sh
   * If you do this, keep in mind that if a peer's IP address changes, you'll lose inbound communication with them.
 
 ```bash
-sudo ./ocr-acl-create.sh
+sudo ./run.sh
 ```
 (select option 2)
 
