@@ -17,6 +17,17 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# Check if running OS is Debian or RHEL based
+if [ -f "/etc/debian_version" ]
+then
+   echo "Debian System Detected"
+   deb_check=1
+elif [ -f "/etc/redhat-release" ]
+then
+   echo "Red Hat System Detected"
+   rhel_check=1
+fi
+
 # =========
 # Install Dependencies
 check_deb_deps () {
@@ -26,6 +37,17 @@ echo "${blue_fg}Checking/Resolving dependencies.${reset}"
 if ! dpkg -s postgresql-client >/dev/null 2>&1; then
     echo "Installing PostgreSQL Client."
     sudo apt update && sudo apt -y install postgresql-client;
+fi
+echo "${blue_fg}Dependencies resolved.${reset}"
+}
+
+check_rpm_deps () {
+echo "---------"
+echo "${blue_fg}Checking/Resolving dependencies.${reset}"
+
+if ! rpm -q --last postgresql-client >/dev/null 2>&1; then
+    echo "Installing PostgreSQL Client."
+    sudo yum clean metadata && sudo yum install -y postgresql;
 fi
 echo "${blue_fg}Dependencies resolved.${reset}"
 }
@@ -155,6 +177,15 @@ create_iptables_rules
 exit
 }
 
-
-check_deb_deps
+# =========
+# Install deps for selected OS
+if [[ $deb_check == "1" ]]
+then
+   check_deb_deps
+elif [[ $rhel_check == "1" ]]
+then
+   check_rpm_deps
+else
+   echo "Distribution check failed. Are you running something other than RHEL/Debian?"
+fi
 select_automation
