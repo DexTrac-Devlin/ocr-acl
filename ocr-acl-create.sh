@@ -45,7 +45,7 @@ check_rpm_deps () {
 echo "---------"
 echo "${blue_fg}Checking/Resolving dependencies.${reset}"
 
-if ! rpm -q --last postgresql-client >/dev/null 2>&1; then
+if ! psql --version >/dev/null 2>&1; then
     echo "Installing PostgreSQL Client."
     sudo yum clean metadata && sudo yum install -y postgresql;
 fi
