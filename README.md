@@ -4,7 +4,7 @@ This is a tool that can be used to automate your Chianlink OCR node's firewall t
 
 ---
 
-#### I have tested this on Debian 10, and no other OS.
+#### This has been tested on Debian 10 and CentOS 8.
 
 (use at your own risk, consider this as 100% untested)
 
