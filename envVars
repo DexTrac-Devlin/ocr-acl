@@ -8,3 +8,6 @@
 #PGDATABASE=your_psql_database
 
 #LISTENPORT=your_ocr_listenport
+
+# If you are tuning an EC2 instance, set the following
+#EC2GROUP=your_ec2_security_group
